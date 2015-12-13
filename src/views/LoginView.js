@@ -1,5 +1,12 @@
 import React from 'react'
 import 'styles/core.scss'
+import Firebase from 'firebase'
+import constants from 'utils/constants'
+import { actions as counterActions } from '../redux/modules/auth'
+import { connect } from 'react-redux'
+
+const ref = new Firebase(constants.FIREBASE)
+// let auth = ref.getAuth()
 // import { Link } from 'react-router'
 
 export class LoginView extends React.Component {
@@ -12,7 +19,17 @@ export class LoginView extends React.Component {
     e.preventDefault()
     let email = this.refs.email.value
     let password = this.refs.password.value
-    
+    ref.authWithPassword({
+      'email': email,
+      'password': password
+    }, function (error, authData) {
+      if (error) {
+        console.log('Login Failed!', error)
+      } else {
+        console.log('Authenticated successfully with payload:', authData)
+        // auth = authData
+      }
+    })
   }
 
   render () {
@@ -35,4 +52,4 @@ export class LoginView extends React.Component {
   }
 }
 
-export default LoginView
+export default connect(counterActions)(LoginView)

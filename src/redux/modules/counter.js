@@ -17,5 +17,8 @@ export const actions = {
 // Reducer
 // ------------------------------------
 export default createReducer(0, {
-  [COUNTER_INCREMENT]: (state) => state + 1
+  [COUNTER_INCREMENT]: (state) => {
+    console.log(state)
+    return state + 1
+  }
 })

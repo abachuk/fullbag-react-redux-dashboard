@@ -1,5 +1,5 @@
 {
-  "name": "FullBag React",
+  "name": "FullBag-React",
   "version": "0.18.0",
   "description": "React/redux dashboard with firebase data and auth",
   "main": "index.js",

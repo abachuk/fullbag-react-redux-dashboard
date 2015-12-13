@@ -10,13 +10,15 @@ console.log(authData)
 // ------------------------------------
 // Constants
 // ------------------------------------
-const AUTH = 'AUTH'
+const LOGIN = 'LOGIN'
+// const AUTH = 'AUTH'
+const REGISTER = 'REGISTER'
 
 // ------------------------------------
 // Actions
 // ------------------------------------
-export const login = () => ({ type: AUTH })
-export const register = () => ({ type: AUTH })
+export const login = () => ({ type: LOGIN })
+export const register = () => ({ type: REGISTER })
 export const actions = {
   login, register
 }
@@ -25,5 +27,5 @@ export const actions = {
 // Reducer
 // ------------------------------------
 export default createReducer(0, {
-  [AUTH]: (state) => authData
+  [LOGIN]: (state) => authData
 })
