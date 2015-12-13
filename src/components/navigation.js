@@ -1,9 +1,24 @@
 import React from 'react'
+import Firebase from 'firebase'
+import constants from 'utils/constants'
+import { actions as authActions } from '../redux/modules/auth'
+import { connect } from 'react-redux'
 // import { Link } from 'react-router'
+
+const ref = new Firebase(constants.FIREBASE)
+
+const mapStateToProps = (state) => ({
+  auth: state.auth
+})
 
 export class Navbar extends React.Component {
   static propTypes = {
 
+  }
+
+  logout (e) {
+    e.preventDefault()
+    ref.unauth()
   }
 
   render () {
@@ -34,7 +49,7 @@ export class Navbar extends React.Component {
         </li>
       </ul>
       <ul className='nav navbar-nav navbar-right'>
-        <li><a href='#'>Link</a></li>
+        <li><a href='#' onClick={this.logout.bind(this)}>Logout</a></li>
       </ul>
     </div>
   </div>
@@ -43,4 +58,4 @@ export class Navbar extends React.Component {
   }
 }
 
-export default Navbar
+export default connect(mapStateToProps, authActions)(Navbar)

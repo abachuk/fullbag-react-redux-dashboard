@@ -2,12 +2,16 @@ import React from 'react'
 import 'styles/core.scss'
 import Firebase from 'firebase'
 import constants from 'utils/constants'
-import { actions as counterActions } from '../redux/modules/auth'
+import { actions as authActions } from '../redux/modules/auth'
 import { connect } from 'react-redux'
 
 const ref = new Firebase(constants.FIREBASE)
 // let auth = ref.getAuth()
 // import { Link } from 'react-router'
+
+const mapStateToProps = (state) => ({
+  auth: state.auth
+})
 
 export class LoginView extends React.Component {
 
@@ -52,4 +56,4 @@ export class LoginView extends React.Component {
   }
 }
 
-export default connect(counterActions)(LoginView)
+export default connect(mapStateToProps, authActions)(LoginView)
