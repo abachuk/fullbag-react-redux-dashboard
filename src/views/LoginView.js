@@ -4,6 +4,7 @@ import Firebase from 'firebase'
 import constants from 'utils/constants'
 import { actions as authActions } from '../redux/modules/auth'
 import { connect } from 'react-redux'
+import { history } from 'react-router'
 
 const ref = new Firebase(constants.FIREBASE)
 // let auth = ref.getAuth()
@@ -21,6 +22,8 @@ export class LoginView extends React.Component {
 
   handleSubmit (e) {
     e.preventDefault()
+    console.log(this)
+    console.log(history)
     let email = this.refs.email.value
     let password = this.refs.password.value
     ref.authWithPassword({
