@@ -21,7 +21,7 @@ export class HomeView extends React.Component {
   render () {
     return (
       <div className='container text-center'>
-        <h1>Welcome to the React Redux Starter Kit</h1>
+        <h1>Welcome to the React Redux Starter Kit!</h1>
         <h2>
           Sample Counter:&nbsp;
           <span className={styles['counter--green']}>{this.props.counter}</span>
@@ -31,7 +31,7 @@ export class HomeView extends React.Component {
           Increment
         </button>
         <hr />
-        <Link to='/about'>Go To About View</Link>
+        <Link to='/new-recipe'>New Recipe</Link>
       </div>
     )
   }
