@@ -13,12 +13,13 @@ const mapStateToProps = (state) => ({
 
 export class Navbar extends React.Component {
   static propTypes = {
-
+    history: React.PropTypes.object
   }
 
   logout (e) {
     e.preventDefault()
     ref.unauth()
+    this.props.history.pushState(null, '/login')
   }
 
   render () {

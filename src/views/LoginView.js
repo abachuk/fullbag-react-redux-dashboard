@@ -4,7 +4,7 @@ import Firebase from 'firebase'
 import constants from 'utils/constants'
 import { actions as authActions } from '../redux/modules/auth'
 import { connect } from 'react-redux'
-import { history } from 'react-router'
+// import { history } from 'react-router'
 
 const ref = new Firebase(constants.FIREBASE)
 // let auth = ref.getAuth()
@@ -17,15 +17,17 @@ const mapStateToProps = (state) => ({
 export class LoginView extends React.Component {
 
   static propTypes = {
-
+    history: React.PropTypes.object
   }
 
   handleSubmit (e) {
     e.preventDefault()
     console.log(this)
-    console.log(history)
     let email = this.refs.email.value
     let password = this.refs.password.value
+    // let history = this.props.history
+    let that = this
+    console.log(history)
     ref.authWithPassword({
       'email': email,
       'password': password
@@ -34,7 +36,7 @@ export class LoginView extends React.Component {
         console.log('Login Failed!', error)
       } else {
         console.log('Authenticated successfully with payload:', authData)
-        // auth = authData
+        that.props.history.pushState(null, '/about')
       }
     })
   }
