@@ -1,11 +1,13 @@
 require('babel-register')
 
 const config = require('../config')
-const debug = require('debug')('kit:bin:compile')
+const debug = require('debug')('app:bin:compile')
+const fs = require('fs-extra')
+
+const paths = config.utils_paths
 
 debug('Create webpack compiler.')
-
-const compiler = require('webpack')(require('../build/webpack'))
+const compiler = require('webpack')(require('../build/webpack.config'))
 
 compiler.run(function (err, stats) {
   const jsonStats = stats.toJson()
@@ -18,6 +20,7 @@ compiler.run(function (err, stats) {
     process.exit(1)
   } else if (jsonStats.errors.length > 0) {
     debug('Webpack compiler encountered errors.')
+    console.log(jsonStats.errors)
     process.exit(1)
   } else if (jsonStats.warnings.length > 0) {
     debug('Webpack compiler encountered warnings.')
@@ -26,6 +29,9 @@ compiler.run(function (err, stats) {
       process.exit(1)
     }
   } else {
-    debug('No errors / warnings encountered.')
+    debug('No errors or warnings encountered.')
   }
+
+  debug('Copy static assets to dist folder.')
+  fs.copySync(paths.client('static'), paths.dist())
 })

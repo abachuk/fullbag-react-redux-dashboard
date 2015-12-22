@@ -1,14 +1,8 @@
 import React from 'react'
 import { Route, IndexRoute } from 'react-router'
-
 import Firebase from 'firebase'
 import constants from 'utils/constants'
-
-import CoreLayout from 'layouts/CoreLayout'
 import LoginLayout from 'layouts/LoginLayout'
-
-import HomeView from 'views/HomeView'
-import AboutView from 'views/AboutView'
 import LoginView from 'views/LoginView'
 import NewrecipeView from 'views/NewrecipeView'
 
@@ -22,17 +16,19 @@ function requireAuth (nextState, replaceState) {
   }
 }
 
-export default (
-  <Route>
-  <Route component={CoreLayout} path='/' onEnter={requireAuth}>
-    <IndexRoute component={HomeView} />
-    <Route component={AboutView} path='/about' />
-    <Route component={NewrecipeView} path='/new-recipe' />
-  </Route>
 
-  <Route component={LoginLayout} path='/login'>
-    <IndexRoute component={LoginView} />
-    <Route component={LoginView} path='/logon' />
-  </Route>
+// NOTE: here we're making use of the `resolve.root` configuration
+// option in webpack, which allows us to specify import paths as if
+// they were from the root of the ~/src directory. This makes it
+// very easy to navigate to files regardless of how deeply nested
+// your current file is.
+import CoreLayout from 'layouts/CoreLayout'
+import HomeView from 'views/HomeView'
+import AboutView from 'views/AboutView'
+
+export default (
+  <Route path='/' component={CoreLayout}>
+    <IndexRoute component={HomeView} />
+    <Route path='/about' component={AboutView} />
   </Route>
 )

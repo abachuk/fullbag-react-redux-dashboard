@@ -9,30 +9,33 @@ export default class Root extends React.Component {
     store: React.PropTypes.object.isRequired
   }
 
-  render () {
-    const content = (
+  get content () {
+    return (
       <Router history={this.props.history}>
         {this.props.routes}
       </Router>
     )
+  }
 
-    if (__DEBUG__ && !__DEBUG_NW__) {
-      const DevTools = require('containers/DevTools').default
-
-      return (
-        <Provider store={this.props.store}>
-          <div>
-            {content}
-            <DevTools />
-          </div>
-        </Provider>
-      )
-    } else {
-      return (
-        <Provider store={this.props.store}>
-          {content}
-        </Provider>
-      )
+  get devTools () {
+    if (__DEBUG__) {
+      if (__DEBUG_NEW_WINDOW__) {
+        require('../redux/utils/createDevToolsWindow')(this.props.store)
+      } else {
+        const DevTools = require('containers/DevTools')
+        return <DevTools />
+      }
     }
+  }
+
+  render () {
+    return (
+      <Provider store={this.props.store}>
+        <div style={{ height: '100%' }}>
+          {this.content}
+          {this.devTools}
+        </div>
+      </Provider>
+    )
   }
 }

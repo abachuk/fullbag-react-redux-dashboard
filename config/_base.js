@@ -3,7 +3,7 @@ import _debug from 'debug'
 import path from 'path'
 import { argv } from 'yargs'
 
-const debug = _debug('kit:config:_base')
+const debug = _debug('app:config:_base')
 const config = {
   env : process.env.NODE_ENV,
 
@@ -43,6 +43,7 @@ const config = {
     'react-redux',
     'react-router',
     'redux',
+    'redux-actions',
     'redux-simple-router'
   ],
 
@@ -76,7 +77,7 @@ config.globals = {
   '__DEV__'      : config.env === 'development',
   '__PROD__'     : config.env === 'production',
   '__DEBUG__'    : config.env === 'development' && !argv.no_debug,
-  '__DEBUG_NW__' : !!argv.nw
+  '__DEBUG_NEW_WINDOW__' : !!argv.nw
 }
 
 // ------------------------------------
