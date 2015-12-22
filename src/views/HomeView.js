@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import { actions as counterActions } from '../redux/modules/counter'
 import styles from './HomeView.scss'
+import Navbar from '../components/navigation'
 
 // We define mapStateToProps where we'd normally use
 // the @connect decorator so the data requirements are clear upfront, but then
@@ -22,6 +23,7 @@ export class HomeView extends React.Component {
   render () {
     return (
       <div className='container text-center'>
+        <Navbar />
         <h1>Welcome to the React Redux Starter Kit</h1>
         <h2>
           Sample Counter:&nbsp;
