@@ -16,7 +16,6 @@ function requireAuth (nextState, replaceState) {
   }
 }
 
-
 // NOTE: here we're making use of the `resolve.root` configuration
 // option in webpack, which allows us to specify import paths as if
 // they were from the root of the ~/src directory. This makes it
@@ -27,8 +26,20 @@ import HomeView from 'views/HomeView'
 import AboutView from 'views/AboutView'
 
 export default (
-  <Route path='/' component={CoreLayout}>
+  <Route>
+
+  <Route path='/' component={CoreLayout} onEnter={requireAuth}>
     <IndexRoute component={HomeView} />
     <Route path='/about' component={AboutView} />
+    <Route component={AboutView} path='/about' />
+    <Route component={NewrecipeView} path='/new-recipe' />
   </Route>
+
+  <Route component={LoginLayout} path='/login'>
+    <IndexRoute component={LoginView} />
+    <Route component={LoginView} path='/logon' />
+  </Route>
+
+  </Route>
+
 )
