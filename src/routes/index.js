@@ -2,8 +2,8 @@ import React from 'react'
 import { Route, IndexRoute } from 'react-router'
 import Firebase from 'firebase'
 import constants from 'utils/constants'
-import LoginLayout from 'layouts/LoginLayout'
-import LoginView from 'views/LoginView'
+// import LoginLayout from 'layouts/LoginLayout'
+// import LoginView from 'views/LoginView'
 import NewrecipeView from 'views/NewrecipeView'
 
 const ref = new Firebase(constants.FIREBASE)
@@ -26,20 +26,17 @@ import HomeView from 'views/HomeView'
 import AboutView from 'views/AboutView'
 
 export default (
-  <Route>
 
-  <Route path='/' component={CoreLayout} onEnter={requireAuth}>
+  <Route path='/' component={CoreLayout}>
     <IndexRoute component={HomeView} />
     <Route path='/about' component={AboutView} />
     <Route component={AboutView} path='/about' />
-    <Route component={NewrecipeView} path='/new-recipe' />
+    <Route component={NewrecipeView} path='/new-recipe' onEnter={requireAuth} />
   </Route>
 
-  <Route component={LoginLayout} path='/login'>
-    <IndexRoute component={LoginView} />
-    <Route component={AboutView} path='/logon' />
-  </Route>
-
-  </Route>
+  // <Route component={LoginLayout} path='/login'>
+  //   <IndexRoute component={LoginView} />
+  //   <Route component={AboutView} path='/logon' />
+  // </Route>
 
 )
