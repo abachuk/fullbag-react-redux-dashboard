@@ -22,7 +22,7 @@ export class Navbar extends React.Component {
   logout (e) {
     e.preventDefault()
     ref.unauth()
-    history.replace('/login')
+    history.pushState(null, '/')
   }
 
   render () {
