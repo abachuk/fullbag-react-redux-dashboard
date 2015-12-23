@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import { actions as counterActions } from '../redux/modules/counter'
 import styles from './HomeView.scss'
-import Navbar from '../components/navigation'
+// import Navbar from '../components/navigation'
 
 // import constants from 'utils/constants'
 // import Firebase from 'firebase'
@@ -34,7 +34,7 @@ export class HomeView extends React.Component {
     console.log(this)
     return (
       <div className='container text-center'>
-        <Navbar history={this.props.history} />
+
         <h1>Welcome {this.props.auth.uid}</h1>
         <h2>
           Sample Counter:&nbsp;
