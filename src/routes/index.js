@@ -32,12 +32,8 @@ export default (
     <IndexRoute component={HomeView} />
     <Route path='/about' component={AboutView} />
     <Route component={AboutView} path='/about' />
-    <Route path='/recipes' component={CoreLayout}>
-      <IndexRoute component={AllrecipesView} />
-      <Route component={AllrecipesView} path='/all' />
-      <Route component={NewrecipeView} path='/new' />
-    </Route>
-
+    <Route component={AllrecipesView} path='/recipes/all' />
+    <Route component={NewrecipeView} path='/recipes/new' />
   </Route>
 
   <Route component={LoginLayout} path='/login'>
