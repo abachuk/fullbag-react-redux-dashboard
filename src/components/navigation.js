@@ -1,6 +1,7 @@
 import React from 'react'
 import Firebase from 'firebase'
 import constants from 'utils/constants'
+import { Link } from 'react-router'
 import { actions as authActions } from '../redux/modules/auth'
 import { connect } from 'react-redux'
 // import { createHistory } from 'history'
@@ -41,21 +42,14 @@ export class Navbar extends React.Component {
               <span className='icon-bar'></span>
               <span className='icon-bar'></span>
             </button>
-          <a className='navbar-brand' href='#'>Brand</a>
+          <a className='navbar-brand' href='#'>FullBag</a>
         </div>
 
     <div className='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
       <ul className='nav navbar-nav'>
-        <li className='active'><a href='#'>Link <span className='sr-only'>(current)</span></a></li>
-        <li><a href='#'>Link</a></li>
-        <li className='dropdown'>
-          <a href='#' className='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>
-            Dropdown <span className='caret'></span>
-          </a>
-          <ul className='dropdown-menu'>
-            <li><a href='#'>Action</a></li>
-          </ul>
-        </li>
+        <li><Link to='/'>Home</Link></li>
+        <li><Link to='/recipes/all'>Recipes</Link></li>
+        <li><Link to='/recipes/new'>New Recipe</Link></li>
       </ul>
       <ul className='nav navbar-nav navbar-right'>
         <li><a href='#' onClick={this.logout.bind(this)}>Logout</a></li>

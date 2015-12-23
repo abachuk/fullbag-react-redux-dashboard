@@ -4,9 +4,10 @@ import { Link } from 'react-router'
 import { actions as counterActions } from '../redux/modules/counter'
 import styles from './HomeView.scss'
 import Navbar from '../components/navigation'
-// import { createHistory } from 'history'
-//
-// let history = createHistory()
+
+import constants from 'utils/constants'
+import Firebase from 'firebase'
+const ref = new Firebase(constants.FIREBASE)
 
 // We define mapStateToProps where we'd normally use
 // the @connect decorator so the data requirements are clear upfront, but then
@@ -16,6 +17,7 @@ import Navbar from '../components/navigation'
 const mapStateToProps = (state) => ({
   counter: state.counter
 })
+
 export class HomeView extends React.Component {
   static propTypes = {
     counter: React.PropTypes.number.isRequired,
