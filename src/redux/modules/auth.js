@@ -26,6 +26,6 @@ export const actions = {
 // ------------------------------------
 // Reducer
 // ------------------------------------
-export default createReducer(0, {
+export default createReducer({}, {
   [LOGIN]: (state) => authData
 })

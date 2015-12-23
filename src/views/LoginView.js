@@ -30,7 +30,7 @@ export class LoginView extends React.Component {
     console.log(this)
     let email = this.refs.email.value
     let password = this.refs.password.value
-    let mas = this
+    let self = this
 
     ref.authWithPassword({
       'email': email,
@@ -39,9 +39,10 @@ export class LoginView extends React.Component {
       if (error) {
         console.log('Login Failed!', error)
       } else {
-        console.log(mas)
+        console.log(self)
         console.log('Authenticated successfully with payload:', authData)
-        mas.props.history.pushState(null, '/')
+        self.props.history.pushState(null, '/')
+        self.props.login(authData)
       }
     })
   }

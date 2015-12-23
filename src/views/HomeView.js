@@ -5,32 +5,37 @@ import { actions as counterActions } from '../redux/modules/counter'
 import styles from './HomeView.scss'
 import Navbar from '../components/navigation'
 
-import constants from 'utils/constants'
-import Firebase from 'firebase'
-const ref = new Firebase(constants.FIREBASE)
+// import constants from 'utils/constants'
+// import Firebase from 'firebase'
+// const ref = new Firebase(constants.FIREBASE)
 
 // We define mapStateToProps where we'd normally use
 // the @connect decorator so the data requirements are clear upfront, but then
 // export the decorated component after the main class definition so
 // the component can be tested w/ and w/o being connected.
 // See: http://rackt.github.io/redux/docs/recipes/WritingTests.html
+
 const mapStateToProps = (state) => ({
-  counter: state.counter
+  counter: state.counter,
+  auth: state.auth
 })
 
 export class HomeView extends React.Component {
+
   static propTypes = {
     counter: React.PropTypes.number.isRequired,
     doubleAsync: React.PropTypes.func.isRequired,
     increment: React.PropTypes.func.isRequired,
-    history: React.PropTypes.object
+    history: React.PropTypes.object,
+    auth: React.PropTypes.object
   }
 
   render () {
+    console.log(this)
     return (
       <div className='container text-center'>
         <Navbar history={this.props.history} />
-        <h1>Welcome to the React Redux Starter Kit</h1>
+        <h1>Welcome {this.props.auth.uid}</h1>
         <h2>
           Sample Counter:&nbsp;
           <span className={styles['counter--green']}>{this.props.counter}</span>
