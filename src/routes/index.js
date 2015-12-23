@@ -14,6 +14,8 @@ function requireAuth (nextState, replaceState) {
   console.log(authData)
   if (!authData) {
     replaceState({ nextPathname: nextState.location.pathname }, '/login')
+  } else {
+    console.log(nextState)
   }
 }
 
