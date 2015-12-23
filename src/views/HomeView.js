@@ -4,10 +4,9 @@ import { Link } from 'react-router'
 import { actions as counterActions } from '../redux/modules/counter'
 import styles from './HomeView.scss'
 import Navbar from '../components/navigation'
-import { createHistory } from 'history'
-import { pushPath } from 'redux-simple-router'
+// import { createHistory } from 'history'
 
-let history = createHistory()
+// let history = createHistory()
 
 // We define mapStateToProps where we'd normally use
 // the @connect decorator so the data requirements are clear upfront, but then
@@ -27,10 +26,11 @@ export class HomeView extends React.Component {
 
   yo (e) {
     e.preventDefault()
-    // history.pushState(null, '/about')
-    pushPath('/login', {}, false)
+    this.props.history.pushState(null, '/about')
+    // pushPath('/login', {}, false)
     // window.location.replace('/about')
-    console.log(pushPath)
+
+    console.log(this)
   }
 
   render () {
@@ -52,7 +52,7 @@ export class HomeView extends React.Component {
         </button>
         <hr />
         <Link to='/about'>Go To About View</Link>
-        <a href='#' className='btn btn-default' onClick={this.yo}>Yo</a>
+        <a href='#' className='btn btn-default' onClick={this.yo.bind(this)}>Yo</a>
       </div>
     )
   }

@@ -3,9 +3,9 @@ import Firebase from 'firebase'
 import constants from 'utils/constants'
 import { actions as authActions } from '../redux/modules/auth'
 import { connect } from 'react-redux'
-import { createHistory } from 'history'
+// import { createHistory } from 'history'
 
-let history = createHistory()
+// let history = createHistory()
 // import { Link } from 'react-router'
 
 const ref = new Firebase(constants.FIREBASE)
@@ -19,10 +19,15 @@ export class Navbar extends React.Component {
     history: React.PropTypes.object
   }
 
+  static propTypes = {
+    history: React.PropTypes.object
+  }
+
   logout (e) {
     e.preventDefault()
     ref.unauth()
-    history.pushState(null, '/')
+    console.log(this)
+    this.props.history.pushState(null, '/login')
   }
 
   render () {
