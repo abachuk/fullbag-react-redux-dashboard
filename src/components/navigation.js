@@ -50,6 +50,7 @@ export class Navbar extends React.Component {
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/recipes/all'>Recipes</Link></li>
         <li><Link to='/recipes/new'>New Recipe</Link></li>
+        <li><Link to='/profile'>My profile</Link></li>
       </ul>
       <ul className='nav navbar-nav navbar-right'>
         <li><a href='#' onClick={this.logout.bind(this)}>Logout</a></li>
