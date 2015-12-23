@@ -5,7 +5,7 @@ import { actions as counterActions } from '../redux/modules/counter'
 import styles from './HomeView.scss'
 import Navbar from '../components/navigation'
 // import { createHistory } from 'history'
-
+//
 // let history = createHistory()
 
 // We define mapStateToProps where we'd normally use
@@ -24,19 +24,10 @@ export class HomeView extends React.Component {
     history: React.PropTypes.object
   }
 
-  yo (e) {
-    e.preventDefault()
-    this.props.history.pushState(null, '/about')
-    // pushPath('/login', {}, false)
-    // window.location.replace('/about')
-
-    console.log(this)
-  }
-
   render () {
     return (
       <div className='container text-center'>
-        <Navbar />
+        <Navbar history={this.props.history} />
         <h1>Welcome to the React Redux Starter Kit</h1>
         <h2>
           Sample Counter:&nbsp;
@@ -52,7 +43,6 @@ export class HomeView extends React.Component {
         </button>
         <hr />
         <Link to='/about'>Go To About View</Link>
-        <a href='#' className='btn btn-default' onClick={this.yo.bind(this)}>Yo</a>
       </div>
     )
   }
