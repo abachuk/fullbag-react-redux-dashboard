@@ -5,6 +5,7 @@ import constants from 'utils/constants'
 import LoginLayout from 'layouts/LoginLayout'
 import LoginView from 'views/LoginView'
 import NewrecipeView from 'views/NewrecipeView'
+import AllrecipesView from 'views/AllrecipesView'
 
 const ref = new Firebase(constants.FIREBASE)
 let authData = ref.getAuth()
@@ -31,7 +32,12 @@ export default (
     <IndexRoute component={HomeView} />
     <Route path='/about' component={AboutView} />
     <Route component={AboutView} path='/about' />
-    <Route component={NewrecipeView} path='/new-recipe' onEnter={requireAuth} />
+    <Route path='/recipes' component={CoreLayout}>
+      <IndexRoute component={AllrecipesView} />
+      <Route component={AllrecipesView} path='/all' />
+      <Route component={NewrecipeView} path='/new' />
+    </Route>
+
   </Route>
 
   <Route component={LoginLayout} path='/login'>
