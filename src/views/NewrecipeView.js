@@ -18,12 +18,33 @@ import 'styles/core.scss'
 // })
 
 export class NewrecipeView extends React.Component {
+
+  addOne(e) {
+    e.preventDefault()
+  }
+
   render () {
     return (
-      <form>
-        <h1>New</h1>
-        <input type='text' />
-      </form>
+      <div className='container'>
+        <form>
+          <h1>New Recipe</h1>
+
+          <div className='form-group'>
+            <label forHtml='title'>Title</label>
+            <input type='text' className='form-control' id='title' placeholder='Name of the recipe' />
+          </div>
+
+          <div className='form-group'>
+            <h3>Ingredients</h3>
+            <label forHtml='ingredient-name'>Name</label>
+            <input type='text' className='form-control' id='ingredient-name' placeholder='Name' />
+            <label forHtml='ingredient-amount'>Amount</label>
+            <input type='text' className='form-control' id='ingredient-amount' placeholder='Amount' />
+            <button className='btn btn-info' onClick={this.addOne.bind(this)}>Add</button>
+          </div>
+
+        </form>
+      </div>
     )
   }
 }
