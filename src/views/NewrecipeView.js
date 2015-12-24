@@ -1,4 +1,5 @@
 import React from 'react'
+import {reduxForm} from 'redux-form'
 import 'styles/core.scss'
 import IngredientsForm from '../components/ingredients-fields'
 // import Firebase from 'firebase'
@@ -19,6 +20,11 @@ import IngredientsForm from '../components/ingredients-fields'
 // })
 
 export class NewrecipeView extends React.Component {
+
+  static propTypes = {
+    fields: React.PropTypes.object,
+    handleSubmit: React.PropTypes.func
+  }
 
   addOne (e) {
     e.preventDefault()
@@ -52,6 +58,7 @@ export class NewrecipeView extends React.Component {
   }
 
   render () {
+    const {fields: {title, description, file}, handleSubmit} = this.props
     return (
       <div className='container'>
         <form onSubmit={this.handleSubmit.bind(this)}>
@@ -59,7 +66,7 @@ export class NewrecipeView extends React.Component {
 
           <div className='form-group'>
             <label forHtml='title'>Title</label>
-            <input type='text' className='form-control' id='title' placeholder='Name of the recipe' ref='title' />
+            <input type='text' className='form-control' id='title' placeholder='Name of the recipe' {...title} ref='title' />
           </div>
 
           <IngredientsForm />
@@ -67,12 +74,12 @@ export class NewrecipeView extends React.Component {
 
           <div className='form-group'>
             <label forHtml='description'>Description</label>
-            <textarea className='form-control' rows='3' id='description' ref='description' />
+            <textarea className='form-control' rows='3' id='description' {...description} ref='description' />
           </div>
 
           <div className='form-group'>
             <label forHtml='picure'>Upload picture</label>
-            <input type='file' id='picure' ref='file' onChange={this.handleFile} />
+            <input type='file' id='picure' ref='file' onChange={this.handleFile} {...file} />
           </div>
 
           <input type='submit' value='Create recipe' className='btn btn-primary' />
@@ -83,4 +90,9 @@ export class NewrecipeView extends React.Component {
   }
 }
 
-export default NewrecipeView
+// NewrecipeView =
+
+export default reduxForm({ // <----- THIS IS THE IMPORTANT PART!
+  form: 'newRecipe',                           // a unique name for this form
+  fields: ['title', 'description', 'file'] // all the fields in your form
+})(NewrecipeView)
