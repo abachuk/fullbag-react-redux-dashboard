@@ -6,9 +6,9 @@ export class IngredientsForm extends React.Component {
       <div className='form-group'>
         <h3>Ingredients</h3>
         <label forHtml='ingredient-name'>Name</label>
-        <input type='text' className='form-control' id='ingredient-name' placeholder='Name' />
+        <input type='text' className='form-control' id='ingredient-name' placeholder='Name' ref='ingredientName' />
         <label forHtml='ingredient-amount'>Amount</label>
-        <input type='text' className='form-control' id='ingredient-amount' placeholder='Amount' />        
+        <input type='text' className='form-control' id='ingredient-amount' placeholder='Amount' ref='ingredientAmount' />
       </div>
     )
   }

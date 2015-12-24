@@ -25,15 +25,28 @@ export class NewrecipeView extends React.Component {
     console.log(this)
   }
 
+  handleSubmit (e) {
+    e.preventDefault()
+    console.log(this)
+    let title = this.refs.title.value
+    // let ingredientName = this.refs.ingredientName.value
+    // let ingredientAmount = this.refs.ingredientAmount.value
+    let description = this.refs.description.value
+    let file = this.refs.file.value
+    console.log(description)
+    console.log(file)
+    console.log(title)
+  }
+
   render () {
     return (
       <div className='container'>
-        <form>
+        <form onSubmit={this.handleSubmit.bind(this)}>
           <h1>New Recipe</h1>
 
           <div className='form-group'>
             <label forHtml='title'>Title</label>
-            <input type='text' className='form-control' id='title' placeholder='Name of the recipe' />
+            <input type='text' className='form-control' id='title' placeholder='Name of the recipe' ref='title' />
           </div>
 
           <IngredientsForm />
@@ -41,12 +54,12 @@ export class NewrecipeView extends React.Component {
 
           <div className='form-group'>
             <label forHtml='description'>Description</label>
-            <textarea className='form-control' rows='3' id='description' />
+            <textarea className='form-control' rows='3' id='description' ref='description' />
           </div>
 
           <div className='form-group'>
             <label forHtml='picure'>Upload picture</label>
-            <input type='file' id='picure' />
+            <input type='file' id='picure' ref='file' />
           </div>
 
           <input type='submit' value='Create recipe' className='btn btn-primary' />
