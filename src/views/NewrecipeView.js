@@ -25,6 +25,19 @@ export class NewrecipeView extends React.Component {
     console.log(this)
   }
 
+  handleFile (e) {
+    const self = this
+    let reader = new FileReader()
+    let file = e.target.files[0]
+    reader.onload = function (upload) {
+      self.setState({
+        data_uri: upload.target.result
+      })
+    }
+
+    reader.readAsDataURL(file)
+  }
+
   handleSubmit (e) {
     e.preventDefault()
     console.log(this)
@@ -32,7 +45,7 @@ export class NewrecipeView extends React.Component {
     // let ingredientName = this.refs.ingredientName.value
     // let ingredientAmount = this.refs.ingredientAmount.value
     let description = this.refs.description.value
-    let file = this.refs.file.value
+    let file = this.refs.file
     console.log(description)
     console.log(file)
     console.log(title)
@@ -59,7 +72,7 @@ export class NewrecipeView extends React.Component {
 
           <div className='form-group'>
             <label forHtml='picure'>Upload picture</label>
-            <input type='file' id='picure' ref='file' />
+            <input type='file' id='picure' ref='file' onChange={this.handleFile} />
           </div>
 
           <input type='submit' value='Create recipe' className='btn btn-primary' />
