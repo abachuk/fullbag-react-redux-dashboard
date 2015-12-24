@@ -1,5 +1,6 @@
 import React from 'react'
 import 'styles/core.scss'
+import IngredientsForm from '../components/ingredients-fields'
 // import Firebase from 'firebase'
 // import constants from 'utils/constants'
 // import { actions as authActions } from '../redux/modules/auth'
@@ -19,8 +20,9 @@ import 'styles/core.scss'
 
 export class NewrecipeView extends React.Component {
 
-  addOne(e) {
+  addOne (e) {
     e.preventDefault()
+    console.log(this)
   }
 
   render () {
@@ -34,14 +36,20 @@ export class NewrecipeView extends React.Component {
             <input type='text' className='form-control' id='title' placeholder='Name of the recipe' />
           </div>
 
+          <IngredientsForm />
+          <button className='btn btn-info' onClick={this.addOne.bind(this)}>Add</button>
+
           <div className='form-group'>
-            <h3>Ingredients</h3>
-            <label forHtml='ingredient-name'>Name</label>
-            <input type='text' className='form-control' id='ingredient-name' placeholder='Name' />
-            <label forHtml='ingredient-amount'>Amount</label>
-            <input type='text' className='form-control' id='ingredient-amount' placeholder='Amount' />
-            <button className='btn btn-info' onClick={this.addOne.bind(this)}>Add</button>
+            <label forHtml='description'>Description</label>
+            <textarea className='form-control' rows='3' id='description' />
           </div>
+
+          <div className='form-group'>
+            <label forHtml='picure'>Upload picture</label>
+            <input type='file' id='picure' />
+          </div>
+
+          <input type='submit' value='Create recipe' className='btn btn-primary' />
 
         </form>
       </div>
